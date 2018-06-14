@@ -39,7 +39,7 @@ class Session(object):
         url = BASE + '/session/loginresponse'
         rsp = self.session.put(url, json=payload, headers=SERVICE_VERSION)
         if not rsp.ok:
-            raise Exception(rsp.text)
+            raise Exception(rsp.json())
 
     def mutations(self, last_key=None):
         params = {
@@ -51,7 +51,10 @@ class Session(object):
 
         url = BASE + '/mutations/' + self.iban
         rsp = self.session.get(url, headers=SERVICE_VERSION, params=params)
-        return rsp.json()
+        if rsp.ok:
+            return rsp.json()
+        else:
+            raise Exception(rsp.json())
 
 def calculate_response(challenge, user_id, password):
     obj = decode(challenge)
