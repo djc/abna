@@ -14,6 +14,7 @@ setuptools.setup(
     url='https://github.com/djc/abna',
     license='MIT',
     packages=setuptools.find_packages(),
+    install_requires=['cryptography', 'requests'],
     classifiers=(
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
