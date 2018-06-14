@@ -1,7 +1,7 @@
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric.padding import PKCS1v15
 from cryptography.hazmat.primitives.asymmetric.rsa import RSAPublicNumbers
-import requests, sys
+import copy, requests, sys
 
 BASE = 'https://www.abnamro.nl'
 START = BASE + '/portalserver/mijn-abnamro/mijn-overzicht/overzicht/index.html'
@@ -16,23 +16,20 @@ class Session(object):
         card = int(card)
         token = str(token)
 
-        self.session.get(START)
-        rsp = self.session.get(BASE + '/session/loginchallenge', params={
+        base = {
             'accessToolUsage': 'SOFTTOKEN',
-            'accountNumber': self.iban[8:],
-            'appId': 'SIMPLE_BANKING',
-            'cardNumber': card,
-        })
-
-        challenge = rsp.json()['loginChallenge']
-        response = calculate_response(challenge['challenge'], challenge['userId'], token)
-        payload = {
             'accountNumber': int(self.iban[8:]),
-            'cardNumber': card,
-            'accessToolUsage': 'SOFTTOKEN',
             'appId': 'SIMPLE_BANKING',
-            'response': response,
+            'cardNumber': card,
         }
+
+        self.session.get(START)
+        rsp = self.session.get(BASE + '/session/loginchallenge', params=base)
+        challenge = rsp.json()['loginChallenge']
+
+        response = calculate_response(challenge['challenge'], challenge['userId'], token)
+        payload = copy.copy(base)
+        payload['response'] = response
         for k in {'challengeHandle', 'challengeDeviceDetails'}:
             payload[k] = challenge[k]
 
