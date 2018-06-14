@@ -1,7 +1,7 @@
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric.padding import PKCS1v15
 from cryptography.hazmat.primitives.asymmetric.rsa import RSAPublicNumbers
-import requests
+import requests, sys
 
 BASE = 'https://www.abnamro.nl'
 START = BASE + '/portalserver/mijn-abnamro/mijn-overzicht/overzicht/index.html'
@@ -64,8 +64,8 @@ def calculate_response(challenge, user_id, password):
     }
     encoded = encode(out)
     pub_key = RSAPublicNumbers(ba2num(obj[5]), ba2num(obj[4])).public_key(default_backend())
-    encrypted = pub_key.encrypt(''.join(chr(i) for i in encoded), PKCS1v15())
-    return encrypted.encode('hex')
+    encrypted = pub_key.encrypt(ba2bytes(encoded), PKCS1v15())
+    return bytes2hex(encrypted)
 
 def ba2num(v):
     res = 0
@@ -75,7 +75,7 @@ def ba2num(v):
     return res
 
 def decode(challenge):
-    bytes = [ord(c) for c in challenge.decode('hex')]
+    bytes = hex2ba(challenge)
     res = {}
     cur = 0
     while cur < len(bytes):
@@ -87,10 +87,25 @@ def decode(challenge):
 
 def encode(obj):
     res = []
-    for k, v in sorted(obj.iteritems()):
+    for k, v in sorted(obj.items()):
         res.append(k)
         res.append((len(v) >> 8) & 255)
         res.append(len(v) & 255)
         res += v
     res += [0, 0, 0]
     return res
+
+if sys.version_info[0] < 3:
+    def hex2ba(s):
+        return [ord(c) for c in s.decode('hex')]
+    def ba2bytes(s):
+        return ''.join(chr(i) for i in s)
+    def bytes2hex(s):
+        return s.encode('hex')
+else:
+    def hex2ba(s):
+        return [i for i in s.encode('ascii').fromhex(s)]
+    def ba2bytes(s):
+        return bytes(s)
+    def bytes2hex(s):
+        return s.hex()
