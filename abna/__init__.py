@@ -38,7 +38,7 @@ class Session(object):
         if not rsp.ok:
             raise Exception(rsp.json())
 
-    def mutations(self, last_key=None):
+    def mutations(self, last_key=None, iban=None):
         params = {
             'accountNumber': self.iban,
             'includeActions': 'EXTENDED',
@@ -46,7 +46,8 @@ class Session(object):
         if last_key is not None:
             params['lastMutationKey'] = last_key
 
-        url = BASE + '/mutations/' + self.iban
+        iban = iban or self.iban
+        url = BASE + '/mutations/' + iban
         rsp = self.session.get(url, headers=SERVICE_VERSION, params=params)
         if rsp.ok:
             return rsp.json()
