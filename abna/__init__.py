@@ -46,7 +46,6 @@ class Session(object):
         if last_key is not None:
             params['lastMutationKey'] = last_key
 
-        iban = iban or self.iban
         url = BASE + '/mutations/' + iban
         rsp = self.session.get(url, headers=SERVICE_VERSION, params=params)
         if rsp.ok:
