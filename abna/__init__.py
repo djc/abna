@@ -38,7 +38,7 @@ class Session(object):
         if not rsp.ok:
             raise Exception(rsp.json())
 
-    def mutations(self, last_key=None, iban=None):
+    def mutations(self, iban, last_key=None):
         params = {
             'accountNumber': self.iban,
             'includeActions': 'EXTENDED',
