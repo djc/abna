@@ -18,8 +18,8 @@ in a for-profit context, please consider supporting my open source work on
 
 ### 0.2 (2018-07-15)
 
-- Allow retrieval of mutations from different accounts (
-  [#1](https://github.com/djc/abna/pull/1), thanks to
+- Allow retrieval of mutations from different accounts
+  ([#1](https://github.com/djc/abna/pull/1), thanks to
   [@ivasic](https://github.com/ivasic)). Note that this changes the signature
   of the `Session.mutations()` method to take the account IBAN as a mandatory
   first argument.
