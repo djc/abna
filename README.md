@@ -13,9 +13,11 @@ Requirements:
 
 ### 0.2 (2018-07-15)
 
-- Allow retrieval of mutations from different accounts (#1, thanks to @ivasic).
-  Note that this changes the signature of the `Session.mutations()` method to
-  accept the account as a mandatory first argument.
+- Allow retrieval of mutations from different accounts (
+  [#1](https://github.com/djc/abna/pull/1), thanks to
+  [@ivasic](https://github.com/ivasic)). Note that this changes the signature
+  of the `Session.mutations()` method to take the account IBAN as a mandatory
+  first argument.
 
 ## Alternatives
 
