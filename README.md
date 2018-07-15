@@ -9,6 +9,11 @@ Requirements:
 - requests (tested with 2.15.1)
 - cryptography (tested with 1.4)
 
+This library was created by and is maintained by Dirkjan Ochtman. If you are
+in a position to support ongoing maintenance and further development or use it
+in a for-profit context, please consider supporting my open source work on
+[Patreon](https://www.patreon.com/dochtman).
+
 ## Change log
 
 ### 0.2 (2018-07-15)
