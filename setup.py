@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setuptools.setup(
     name='abna',
-    version='0.1.1',
+    version='0.2',
     author='Dirkjan Ochtman',
     author_email='dirkjan@ochtman.nl',
     description='Automated retrieval of mutations from ABN Amro',
