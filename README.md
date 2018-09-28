@@ -14,6 +14,18 @@ in a position to support ongoing maintenance and further development or use it
 in a for-profit context, please consider supporting my open source work on
 [Patreon](https://www.patreon.com/dochtman).
 
+## Example
+
+Here is a minimal example demonstrating how to use the library:
+
+```python
+import abna, json
+
+sess = abna.Session('NL01ABNA0123456789')
+sess.login(123, '12345')
+print(json.dumps(sess.mutations('NL01ABNA0123456789'), indent=2))
+```
+
 ## Change log
 
 ### 0.2 (2018-07-15)
