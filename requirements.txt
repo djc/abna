@@ -1,0 +1,4 @@
+requests
+cryptography
+python-dotenv
+-e git+git://github.com/djc/abna.git#egg=abna
