@@ -138,4 +138,4 @@ dmypy.json
 cython_debug/
 
 /.env
-/last_transaction_timestamp.txt
+/last_transactions.json

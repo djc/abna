@@ -6,7 +6,7 @@ import settings
 
 
 class YnabClient:
-    BASE_URL = "https://api.youneedabudget.com/v1/"
+    BASE_URL = "https://api.youneedabudget.com/v1"
 
     def _call(self, url, method="get", data=None):
         headers = {
@@ -29,19 +29,19 @@ class YnabClient:
         https://api.youneedabudget.com/v1#/Budgets/getBudgets
         :return:
         """
-        return self._call('budgets')
+        return self._call('/budgets')
 
     def get_accounts(self):
         """
         https://api.youneedabudget.com/v1#/Accounts/getAccounts
         """
-        return self._call("budgets/{budget_id}/accounts".format(budget_id=settings.YNAB_BUDGET_ID))
+        return self._call("/budgets/{budget_id}/accounts".format(budget_id=settings.YNAB_BUDGET_ID))
 
     def get_payees(self):
         """
         https://api.youneedabudget.com/v1#/Payees/getPayees
         """
-        return self._call("budgets/{budget_id}/payees".format(budget_id=settings.YNAB_BUDGET_ID))
+        return self._call("/budgets/{budget_id}/payees".format(budget_id=settings.YNAB_BUDGET_ID))
 
     def get_transactions(self):
         """
