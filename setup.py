@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setuptools.setup(
     name='abna',
-    version='0.2',
+    version='0.3',
     author='Dirkjan Ochtman',
     author_email='dirkjan@ochtman.nl',
     description='Automated retrieval of mutations from ABN Amro',
@@ -14,7 +14,7 @@ setuptools.setup(
     url='https://github.com/djc/abna',
     license='MIT',
     packages=setuptools.find_packages(),
-    install_requires=['cryptography', 'requests'],
+    install_requires=['cryptography', 'requests', 'fake-useragent'],
     classifiers=(
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
@@ -24,6 +24,7 @@ setuptools.setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.8',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ),
 )

@@ -1,0 +1,3 @@
+cryptography
+fake-useragent
+requests

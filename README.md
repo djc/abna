@@ -5,9 +5,9 @@ banking site using the "soft token" (5-digit pass code).
 
 Requirements:
 
-- Python 2.7 or 3 (tested with 3.5)
-- requests (tested with 2.15.1)
-- cryptography (tested with 1.4)
+- Python 2.7 or 3 (tested with 3.5 and 3.8.5)
+- packages from requirements.txt
+
 
 This library was created by and is maintained by Dirkjan Ochtman. If you are
 in a position to support ongoing maintenance and further development or use it
@@ -27,6 +27,9 @@ print(json.dumps(sess.mutations('NL01ABNA0123456789'), indent=2))
 ```
 
 ## Change log
+### 0.3 (2020-02-04)
+
+- Add User-Agent to fake browser behavior
 
 ### 0.2 (2018-07-15)
 
