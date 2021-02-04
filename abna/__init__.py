@@ -1,16 +1,20 @@
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric.padding import PKCS1v15
 from cryptography.hazmat.primitives.asymmetric.rsa import RSAPublicNumbers
+from fake_useragent import UserAgent
 import copy, requests, sys
 
 BASE = 'https://www.abnamro.nl'
 START = BASE + '/portalserver/mijn-abnamro/mijn-overzicht/overzicht/index.html'
 SERVICE_VERSION = {'x-aab-serviceversion': 'v3'}
 
+
 class Session(object):
     def __init__(self, iban):
         self.iban = iban
         self.session = requests.Session()
+        headers = {"User-Agent": UserAgent().random}
+        self.session.headers.update(headers)
 
     def login(self, card, token):
         card = int(card)
