@@ -1,4 +1,3 @@
-requests
-cryptography
 python-dotenv
--e git+git://github.com/djc/abna.git#egg=abna
+fake-useragent
+#-e git+git://github.com/xahgmah/abna.git#egg=abna
