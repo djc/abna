@@ -3,11 +3,7 @@
 This Python library enables retrieval of mutations from the Dutch ABN Amro
 banking site using the "soft token" (5-digit pass code).
 
-Requirements:
-
-- Python 2.7 or 3 (tested with 3.5 and 3.8.5)
-- packages from requirements.txt
-
+Should work with Python 2.7 or 3.x; requires requests and cryptography.
 
 This library was created by and is maintained by Dirkjan Ochtman. If you are
 in a position to support ongoing maintenance and further development or use it
